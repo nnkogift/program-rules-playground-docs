@@ -1,0 +1,7 @@
+node_modules
+build
+.docusaurus
+.git
+.github
+.env*
+*.log
