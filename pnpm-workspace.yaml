@@ -1,7 +1,12 @@
-# sharp is required by @docusaurus/plugin-ideal-image to process screenshots.
-onlyBuiltDependencies:
-  - sharp
+# @docusaurus/plugin-ideal-image pins sharp ^0.32, which downloads its binaries from
+# GitHub releases and falls back to node-gyp (needs Python) when that fails. Newer sharp
+# ships prebuilt binaries as npm packages, so installs need no network access beyond the
+# registry and no build toolchain, on any architecture.
+overrides:
+  sharp: ^0.34.0
 
+# Install scripts are not needed: sharp's binaries come from npm packages, and the
+# core-js script only prints a banner.
 allowBuilds:
-  sharp: true
+  sharp: false
   core-js: false
