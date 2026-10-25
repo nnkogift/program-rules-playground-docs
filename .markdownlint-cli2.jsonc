@@ -1,0 +1,15 @@
+{
+  // Docusaurus admonitions (:::info), MDX and front matter trip several default rules.
+  "config": {
+    "default": true,
+    "MD013": false,
+    "MD024": { "siblings_only": true },
+    "MD033": false,
+    "MD041": false,
+    "MD025": false,
+    "MD046": false,
+    "MD060": false,
+  },
+  "globs": ["docs/**/*.{md,mdx}", "docs-contributing/**/*.md", "*.md"],
+  "ignores": ["node_modules", "build", ".docusaurus", "docs-contributing/templates/**"],
+}

@@ -1,0 +1,6 @@
+build
+.docusaurus
+node_modules
+pnpm-lock.yaml
+docs
+docs-contributing
