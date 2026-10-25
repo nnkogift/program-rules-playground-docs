@@ -1,0 +1,7 @@
+# sharp is required by @docusaurus/plugin-ideal-image to process screenshots.
+onlyBuiltDependencies:
+  - sharp
+
+allowBuilds:
+  sharp: true
+  core-js: false
