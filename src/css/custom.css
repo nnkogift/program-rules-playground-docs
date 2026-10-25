@@ -1,12 +1,13 @@
-/* Primary colour is the green of the app icon (#388e3c). */
+/* Primary colour is a green from the app icon (#388e3c), darkened in light mode so
+   links on white meet WCAG AA contrast (5.1:1). */
 :root {
-  --ifm-color-primary: #388e3c;
-  --ifm-color-primary-dark: #358739;
-  --ifm-color-primary-darker: #328036;
-  --ifm-color-primary-darkest: #2a6b2d;
-  --ifm-color-primary-light: #46964a;
-  --ifm-color-primary-lighter: #549e57;
-  --ifm-color-primary-lightest: #74b077;
+  --ifm-color-primary: #2e7d32;
+  --ifm-color-primary-dark: #2c7730;
+  --ifm-color-primary-darker: #29712d;
+  --ifm-color-primary-darkest: #235e26;
+  --ifm-color-primary-light: #3d8640;
+  --ifm-color-primary-lighter: #4b8f4f;
+  --ifm-color-primary-lightest: #6da470;
 }
 
 [data-theme='dark'] {
