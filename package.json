@@ -1,0 +1,52 @@
+{
+  "name": "program-rules-playground-docs",
+  "version": "0.0.0",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "packageManager": "pnpm@12.11.2",
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "build:mirror": "DOCS_MIRROR=true DOCS_URL=https://nnkogift.github.io DOCS_BASE_URL=/program-rules-playground-docs/ docusaurus build",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "lint": "prettier --check . && tsc --noEmit && markdownlint-cli2",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,json,css,yml,yaml}": "prettier --write",
+    "*.{md,mdx}": [
+      "prettier --write",
+      "markdownlint-cli2"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/plugin-ideal-image": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@docusaurus/theme-mermaid": "3.10.2",
+    "@easyops-cn/docusaurus-search-local": "^0.55.3",
+    "@mdx-js/react": "^3.1.1",
+    "@mermaid-js/layout-elk": "^1.0.1",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/plugin-content-docs": "3.10.2",
+    "@docusaurus/tsconfig": "3.10.2",
+    "@docusaurus/types": "3.10.2",
+    "@types/react": "^19.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "markdownlint-cli2": "^0.24.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3"
+  }
+}
