@@ -14,7 +14,7 @@ const isMirror = process.env.DOCS_MIRROR === 'true';
 const config: Config = {
   title: 'Program Rules Playground',
   tagline: 'Test and debug DHIS2 program rules against real metadata',
-  favicon: 'img/favicon.svg',
+  favicon: 'img/logo.png',
 
   url: process.env.DOCS_URL ?? CANONICAL_URL,
   baseUrl: process.env.DOCS_BASE_URL ?? '/',
@@ -78,6 +78,7 @@ const config: Config = {
     colorMode: { respectPrefersColorScheme: true },
     navbar: {
       title: 'Program Rules Playground',
+      logo: { alt: 'Program Rules Playground logo', src: 'img/logo.png' },
       items: [
         { type: 'docSidebar', sidebarId: 'docs', label: 'Docs', position: 'left' },
         { to: '/help/release-notes', label: 'Release notes', position: 'left' },

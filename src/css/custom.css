@@ -1,19 +1,21 @@
+/* Primary colour is a green from the app icon (#388e3c), darkened in light mode so
+   links on white meet WCAG AA contrast (5.1:1). */
 :root {
-  --ifm-color-primary: #1565c0;
-  --ifm-color-primary-dark: #135bad;
-  --ifm-color-primary-darker: #1256a4;
-  --ifm-color-primary-darkest: #0f478a;
-  --ifm-color-primary-light: #1770d3;
-  --ifm-color-primary-lighter: #187ad9;
-  --ifm-color-primary-lightest: #2d8bea;
+  --ifm-color-primary: #2e7d32;
+  --ifm-color-primary-dark: #2c7730;
+  --ifm-color-primary-darker: #29712d;
+  --ifm-color-primary-darkest: #235e26;
+  --ifm-color-primary-light: #3d8640;
+  --ifm-color-primary-lighter: #4b8f4f;
+  --ifm-color-primary-lightest: #6da470;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #64b5f6;
-  --ifm-color-primary-dark: #42a5f5;
-  --ifm-color-primary-darker: #2196f3;
-  --ifm-color-primary-darkest: #1e88e5;
-  --ifm-color-primary-light: #90caf9;
-  --ifm-color-primary-lighter: #bbdefb;
-  --ifm-color-primary-lightest: #e3f2fd;
+  --ifm-color-primary: #66bb6a;
+  --ifm-color-primary-dark: #61b265;
+  --ifm-color-primary-darker: #5ca85f;
+  --ifm-color-primary-darkest: #4d8c50;
+  --ifm-color-primary-light: #71c074;
+  --ifm-color-primary-lighter: #7bc57f;
+  --ifm-color-primary-lightest: #94cf97;
 }
