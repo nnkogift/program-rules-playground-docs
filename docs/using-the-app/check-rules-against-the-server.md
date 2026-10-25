@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Check rules against the server
 
-This page shows how to use Verify with server to compare your input against what the DHIS2 server reports.
+This page shows how to use **Verify with server** to compare your input against what the DHIS2 server reports.
 
 :::info Draft
 

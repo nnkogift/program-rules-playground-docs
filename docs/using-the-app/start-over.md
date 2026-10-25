@@ -6,7 +6,7 @@ sidebar_position: 13
 
 # Start over
 
-This page shows how to use Reset playground to clear everything you entered.
+This page shows how to use **Reset playground** to clear everything you entered.
 
 :::info Draft
 

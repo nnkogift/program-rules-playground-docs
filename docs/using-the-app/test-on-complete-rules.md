@@ -6,7 +6,7 @@ sidebar_position: 11
 
 # Test on-complete rules
 
-This page shows how to use Preview on-complete effects and the completion pass to test rules that run when you complete a form.
+This page shows how to use **Preview on-complete effects** and the completion pass to test rules that run when you complete a form.
 
 :::info Draft
 

@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Find out why a rule did or didn't fire
 
-This page shows how to use the Rules and Trace tabs to see why a rule fired or stayed idle.
+This page shows how to use the **Rules** and **Trace** tabs to see why a rule fired or stayed idle.
 
 :::info Draft
 

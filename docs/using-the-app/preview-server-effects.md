@@ -6,7 +6,7 @@ sidebar_position: 10
 
 # Preview server effects
 
-This page shows how to use Preview server effects to see notifications and scheduled events without sending anything.
+This page shows how to use **Preview server effects** to see notifications and scheduled events without sending anything.
 
 :::info Draft
 

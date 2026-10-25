@@ -26,7 +26,7 @@ What a program rule does when it runs, for example hiding or showing a field or 
 
 ### firing
 
-A rule that is firing has a condition that evaluates to true for the form you have open, so its actions take effect. The **Rules** tab marks such rules as **Firing** and the others as **Idle**. `TODO(verify)`: exact condition for "firing" when a rule has several actions.
+A rule is firing when its condition evaluates to true for the form you have open. The **Rules** tab marks such rules as **Firing** and the others as **Idle**. Firing describes the condition only: actions that run on completion do not take effect until you complete the form.
 
 ### in scope
 

@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # Map rule dependencies
 
-This page shows how to use the Graph tab to see which rules depend on which fields and variables.
+This page shows how to use the **Graph** tab to see which rules depend on which fields and variables.
 
 :::info Draft
 

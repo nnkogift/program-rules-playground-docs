@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Read the Feedback and Indicators sidebar
 
-This page explains the Feedback and Indicators cards and how each item links back to its rule.
+This page explains the **Feedback** and **Indicators** cards and how each item links back to its rule.
 
 :::info Draft
 

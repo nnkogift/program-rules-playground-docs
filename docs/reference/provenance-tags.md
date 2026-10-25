@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Provenance tags
 
-This page explains the Simulated and Server only tags, and the Not executed by this server message.
+This page explains the **Simulated** and **Server only** tags, and the **Not executed by this server** message.
 
 :::info Draft
 

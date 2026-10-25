@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Validate a form
 
-This page shows how to run Validate form and read its result.
+This page shows how to run **Validate form** and read its result.
 
 :::info Draft
 

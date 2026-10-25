@@ -17,7 +17,7 @@ The app supports DHIS2 2.40 to 2.43.
 
 :::info Nothing is saved
 
-The app never stores data on your server. The only write call it makes is a tracker dry run with `importMode=VALIDATE`, which checks your input and discards it. Read [Is it safe to use on production?](./is-it-safe-on-production.md) for the details.
+The app never stores data on your server. The only write call it makes is a tracker dry run with `importMode=VALIDATE`, which checks your input and discards it. A fuller explanation is coming on [Is it safe to use on production? (draft)](./is-it-safe-on-production.md).
 
 :::
 
