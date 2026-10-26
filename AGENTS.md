@@ -32,7 +32,7 @@ pnpm screenshots   # Playwright screenshots, see docs-contributing/SCREENSHOTS.m
 - Do not invent app behaviour. If a fact is not in the app repo or the Linear plan, write `TODO(verify)`.
 - Link pages with relative file paths so broken links fail the build.
 - Screenshots come from `pnpm screenshots`, never by hand. Reference them by the stable path in `scripts/screenshots/manifest.mts` (`./img/<name>.png`), and keep app locators in `scripts/screenshots/selectors.mts`.
-- Docs are served at the site root (`routeBasePath: '/'`); the intro page has `slug: /`.
+- Docs are served at the site root (`routeBasePath: '/'`); the landing page is `src/pages/index.tsx`.
 
 ## Conventions
 

@@ -1,7 +1,6 @@
 ---
 title: 'What is Program Rules Playground'
 description: 'Program Rules Playground is a DHIS2 app for testing and debugging program rules against your real metadata, without saving any data.'
-slug: /
 sidebar_position: 1
 ---
 
@@ -11,7 +10,7 @@ Program Rules Playground is an open-source DHIS2 app for testing and debugging p
 
 You pick a program, fill in its forms against your real metadata, and watch the program rules run as you type. Fields hide, show, become mandatory or receive values, and the **Feedback** and **Indicators** cards list the messages your rules produce. A rules panel next to the form shows which rules fired, in what order, and which fields they read and changed.
 
-The app supports DHIS2 2.40 to 2.43. From version 0.1.0-alpha.10 it saves nothing to your server. See [Is it safe to use on production?](./is-it-safe-on-production.md) for the details.
+The app supports DHIS2 2.40 to 2.43. See [Is it safe to use on production?](./is-it-safe-on-production.md) for what the app sends to your server.
 
 ## Who it is for
 

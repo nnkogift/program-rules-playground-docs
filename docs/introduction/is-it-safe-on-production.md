@@ -1,22 +1,16 @@
 ---
 title: 'Is it safe to use on production?'
-description: 'Explains why version 0.1.0-alpha.10 and later can be used against a production server: no data or metadata is saved, the only data check is a tracker dry run, and files chosen in file fields are uploaded as unused file resources.'
+description: 'Explains why the app can be used against a production server: no data or metadata is saved, the only data check is a tracker dry run, and files chosen in file fields are uploaded as unused file resources.'
 sidebar_position: 2
 ---
 
 # Is it safe to use on production?
 
-Yes, from version 0.1.0-alpha.10. From that version on, Program Rules Playground never saves tracker data, events, enrollments or metadata on your DHIS2 server, and it never sends notifications. You can open any program, type any values and press any button without creating, changing or deleting records.
+Yes. Program Rules Playground never saves tracker data, events, enrollments or metadata on your DHIS2 server, and it never sends notifications. You can open any program, type any values and press any button without creating, changing or deleting records.
 
 The one exception is a file you choose in a file or image field. See [File and image fields](#file-and-image-fields).
 
-:::warning Versions 0.1.0-alpha.9 and earlier save real data
-
-In versions 0.1.0-alpha.0 to 0.1.0-alpha.9, the save buttons on the forms (**Save event** and **Register tracked entity**) post your values to the server as a real tracker import. They create events, enrollments and tracked entities. If you still run one of these versions, don't use it on a production server, and upgrade to 0.1.0-alpha.10 or later. The App Management app shows the installed version.
-
-:::
-
-This page explains why, and lists every request that version 0.1.0-alpha.10 and later sends.
+This page explains why, and lists every request the app sends.
 
 ## The short version
 
@@ -68,10 +62,6 @@ Don't choose real or sensitive files in the app on a production server. Use a te
 ## Who can do what
 
 The app adds no authorities of its own and cannot do more than the user who runs it. For example, if you can't capture data in the selected organisation unit, the server rejects the **Verify with server** dry run with the same kind of error a real import would get. See [Requirements and user authorities](../getting-started/requirements-and-user-authorities.md).
-
-## If a future version saves data
-
-From 0.1.0-alpha.10, the app has no way to save data. If a later version saves data again, this page and the [release notes](../help/release-notes.md) say so, and explain how saving is kept separate from testing.
 
 ## Related pages
 

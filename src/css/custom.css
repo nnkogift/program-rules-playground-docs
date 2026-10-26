@@ -19,3 +19,53 @@
   --ifm-color-primary-lighter: #7bc57f;
   --ifm-color-primary-lightest: #94cf97;
 }
+
+/* Search shortcut hint: the default keycap fails contrast. */
+.navbar kbd {
+  color: var(--ifm-font-color-base);
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-500);
+}
+
+/* Docs chrome: heavier headings, flat surfaces, framed screenshots. */
+:root {
+  --ifm-heading-font-weight: 800;
+  --ifm-h1-font-size: 2.75rem;
+  --ifm-global-radius: 6px;
+  --ifm-navbar-shadow: none;
+  --ifm-code-font-size: 92%;
+}
+
+.markdown > h1 {
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.markdown > h2 {
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem;
+}
+
+.markdown img {
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.theme-admonition {
+  box-shadow: none;
+  border-left-width: 6px;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  font-weight: 700;
+  background: var(--ifm-color-emphasis-200);
+}
+
+.navbar {
+  border-bottom: 0;
+  background: var(--ifm-background-color);
+}
+
+.table-of-contents__link--active {
+  font-weight: 700;
+}
