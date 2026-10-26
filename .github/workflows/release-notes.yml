@@ -1,0 +1,57 @@
+name: Release notes
+
+# Regenerates docs/help/release-notes.md from the app's CHANGELOG.md and opens a PR when it changed.
+# The app's release job sends `repository_dispatch` with type `app-released`.
+
+on:
+  repository_dispatch:
+    types: [app-released]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-notes
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # The script has no dependencies, so no install step is needed.
+      # The branch comes from the dispatch payload, so check it before it reaches the shell.
+      - name: Resolve the app branch
+        id: app-ref
+        env:
+          APP_REF: ${{ github.event.client_payload.ref || 'alpha' }}
+        run: |
+          ref="${APP_REF#refs/heads/}"
+          if [[ ! "$ref" =~ ^[A-Za-z0-9][A-Za-z0-9._/-]{0,99}$ ]] || [[ "$ref" == *..* ]]; then
+            echo "::error::Invalid app branch in client_payload.ref"
+            exit 1
+          fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+      - name: Generate release notes
+        env:
+          APP_REF: ${{ steps.app-ref.outputs.ref }}
+        run: |
+          node scripts/generate-release-notes.mjs \
+            --from "https://raw.githubusercontent.com/nnkogift/program-rules-playground/${APP_REF}/CHANGELOG.md"
+      - name: Open a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/release-notes
+          delete-branch: true
+          add-paths: docs/help/release-notes.md
+          commit-message: 'docs: regenerate release notes from the app changelog'
+          title: 'docs: regenerate release notes from the app changelog'
+          body: |
+            Regenerates the Release notes page from the app's `CHANGELOG.md` on the `${{ steps.app-ref.outputs.ref }}` branch.
+
+            Triggered by `${{ github.event_name }}`${{ github.event.client_payload.version && format(' for {0}', github.event.client_payload.version) || '' }}.
