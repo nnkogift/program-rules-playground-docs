@@ -15,6 +15,7 @@ pnpm build         # canonical build (fails on broken links)
 pnpm build:mirror  # GitHub Pages mirror build
 pnpm lint          # prettier --check, tsc --noEmit, markdownlint
 pnpm format        # prettier --write
+pnpm screenshots   # Playwright screenshots, see docs-contributing/SCREENSHOTS.md
 ```
 
 ## Two hosts, one source
@@ -30,10 +31,11 @@ pnpm format        # prettier --write
 - Second person, present tense, no em dashes (use commas), UI labels in **bold** exactly as shown in the app, "organisation unit" and "enrollment".
 - Do not invent app behaviour. If a fact is not in the app repo or the Linear plan, write `TODO(verify)`.
 - Link pages with relative file paths so broken links fail the build.
+- Screenshots come from `pnpm screenshots`, never by hand. Reference them by the stable path in `scripts/screenshots/manifest.mts` (`./img/<name>.png`), and keep app locators in `scripts/screenshots/selectors.mts`.
 - Docs are served at the site root (`routeBasePath: '/'`); the intro page has `slug: /`.
 
 ## Conventions
 
 - Conventional commits (`feat:`, `fix:`, `docs:`, `chore:`). Branches: `feature/`, `fix/`, `docs/`, `chore/`.
 - Prettier formats code and config. Markdown in `docs/` is checked by markdownlint, not reformatted.
-- No secrets in the repo. The Dokploy webhook lives in the `DOKPLOY_DEPLOY_WEBHOOK` secret.
+- No secrets in the repo. The Dokploy webhook lives in the `DOKPLOY_DEPLOY_WEBHOOK` secret; the screenshot workflow reads `DHIS2_USERNAME` and `DHIS2_PASSWORD`.
