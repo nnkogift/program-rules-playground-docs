@@ -1,0 +1,176 @@
+{
+  "_sources": {
+    "EFFECT_LEGEND": "node_modules/@nnkogift/dhis2-form-utils-devtools@0.1.0-alpha.14 src/constants/legend.ts:34-63",
+    "PROVENANCE_TAGS": "node_modules/@nnkogift/dhis2-form-utils-devtools@0.1.0-alpha.14 src/constants/legend.ts:74-101",
+    "visuals": "node_modules/@nnkogift/dhis2-form-utils-devtools@0.1.0-alpha.14 src/styles/effectStyles.ts:35-124",
+    "tagProps": "node_modules/@nnkogift/dhis2-form-utils-devtools@0.1.0-alpha.14 src/styles/effectStyles.ts:152-173",
+    "ProvenanceTag render": "node_modules/@nnkogift/dhis2-form-utils-devtools@0.1.0-alpha.14 src/components/ServerEffectsSummary/ProvenanceTag.tsx:9-31",
+    "field badge labels": "src/modules/program-playground/components/rules/FieldEffectBadge.tsx:10-17"
+  },
+  "_notes": [
+    "EFFECT_LEGEND is rendered only in the Graph toolbar (EffectLegend), filtered to variants present on current graph edges, label only (description is never shown in UI).",
+    "Variant message (SENDMESSAGE/SCHEDULEMESSAGE/SCHEDULEEVENT/CREATEEVENT) and default have visuals but NO EFFECT_LEGEND entry.",
+    "PROVENANCE_TAGS descriptions are not rendered in UI. not-executed is never rendered as a Tag; the row prints \"Not executed by this server\" or \"Not executed by this server (requires 2.{{minor}})\" and is dashed/dimmed.",
+    "Colour classes are Tailwind tokens mapped to DHIS2 palette; edgeStroke is the hex used for graph edges and the action card left border in the details modal."
+  ],
+  "EFFECT_LEGEND": [
+    {
+      "variant": "read",
+      "label": "Read",
+      "description": "The rule reads this field in its condition.",
+      "icon": "IconLink16",
+      "tagClassName": "bg-dhis2-teal-100 text-dhis2-teal-900",
+      "edgeStroke": "#00796b",
+      "shortLabel": "read",
+      "dhis2TagVariant": "none (className colours)",
+      "actionTypes": ["read (graph edge only)"],
+      "fieldBadgeLabel": "read (shortLabel fallback, lowercase)"
+    },
+    {
+      "variant": "hide",
+      "label": "Hide",
+      "description": "The rule hides a field, section, option or stage.",
+      "icon": "IconViewOff16",
+      "tagClassName": "bg-dhis2-grey-200 text-dhis2-grey-900",
+      "edgeStroke": "#494949",
+      "shortLabel": "hide",
+      "dhis2TagVariant": "none (className colours)",
+      "actionTypes": [
+        "HIDEFIELD",
+        "HIDEOPTION",
+        "HIDEOPTIONGROUP",
+        "HIDESECTION",
+        "HIDEPROGRAMSTAGE"
+      ],
+      "fieldBadgeLabel": "Hidden"
+    },
+    {
+      "variant": "show",
+      "label": "Show",
+      "description": "The rule shows a field or option.",
+      "icon": "IconView16",
+      "tagClassName": "bg-dhis2-green-100 text-dhis2-green-900",
+      "edgeStroke": "#388e3c",
+      "shortLabel": "show",
+      "dhis2TagVariant": "positive",
+      "actionTypes": ["SHOWFIELD", "SHOWOPTION", "SHOWOPTIONGROUP"],
+      "fieldBadgeLabel": "Shown"
+    },
+    {
+      "variant": "assign",
+      "label": "Assign",
+      "description": "The rule assigns a value to a field.",
+      "icon": "IconEdit16",
+      "tagClassName": "bg-dhis2-blue-100 text-dhis2-blue-900",
+      "edgeStroke": "#1565c0",
+      "shortLabel": "assign",
+      "dhis2TagVariant": "neutral",
+      "actionTypes": ["ASSIGN"],
+      "fieldBadgeLabel": "Assigned"
+    },
+    {
+      "variant": "mandatory",
+      "label": "Required",
+      "description": "The rule makes a field required or optional.",
+      "icon": "IconStarFilled16",
+      "tagClassName": "bg-dhis2-yellow-100 text-dhis2-yellow-900",
+      "edgeStroke": "#e56408",
+      "shortLabel": "required",
+      "dhis2TagVariant": "none (className colours)",
+      "actionTypes": ["SETMANDATORYFIELD", "UNSETMANDATORYFIELD"],
+      "fieldBadgeLabel": "Required by rule"
+    },
+    {
+      "variant": "warning",
+      "label": "Warning",
+      "description": "The rule shows a warning message.",
+      "icon": "IconWarningFilled16",
+      "tagClassName": "bg-dhis2-yellow-100 text-dhis2-yellow-900",
+      "edgeStroke": "#ff8302",
+      "shortLabel": "warn",
+      "dhis2TagVariant": "none (className colours)",
+      "actionTypes": ["SHOWWARNING", "WARNINGONCOMPLETE"],
+      "fieldBadgeLabel": "Warning"
+    },
+    {
+      "variant": "error",
+      "label": "Error",
+      "description": "The rule shows an error and blocks saving.",
+      "icon": "IconErrorFilled16",
+      "tagClassName": "bg-dhis2-red-100 text-dhis2-red-900",
+      "edgeStroke": "#c62828",
+      "shortLabel": "error",
+      "dhis2TagVariant": "negative",
+      "actionTypes": ["SHOWERROR", "ERRORONCOMPLETE"],
+      "fieldBadgeLabel": "Error"
+    },
+    {
+      "variant": "feedback",
+      "label": "Feedback",
+      "description": "The rule displays text or a key-value pair in the feedback widget.",
+      "icon": "IconMessages16",
+      "tagClassName": "bg-dhis2-purple-100 text-dhis2-purple-900",
+      "edgeStroke": "#9c27b0",
+      "shortLabel": "feedback",
+      "dhis2TagVariant": "none (className colours)",
+      "actionTypes": ["DISPLAYTEXT", "DISPLAYKEYVALUEPAIR"],
+      "fieldBadgeLabel": "feedback (shortLabel fallback, lowercase)"
+    }
+  ],
+  "OTHER_VARIANTS_NOT_IN_LEGEND": [
+    {
+      "variant": "message",
+      "icon": "IconMail16",
+      "tagClassName": "bg-dhis2-teal-100 text-dhis2-teal-900",
+      "edgeStroke": "#00796b",
+      "shortLabel": "message",
+      "dhis2TagVariant": "none (className colours)",
+      "actionTypes": ["SENDMESSAGE", "SCHEDULEMESSAGE", "SCHEDULEEVENT", "CREATEEVENT"],
+      "fieldBadgeLabel": "message (shortLabel fallback, lowercase)"
+    },
+    {
+      "variant": "default",
+      "icon": "IconInfo16",
+      "tagClassName": "bg-dhis2-grey-100 text-dhis2-grey-800",
+      "edgeStroke": "#494949",
+      "shortLabel": "effect",
+      "dhis2TagVariant": "none (className colours)",
+      "actionTypes": ["any other"],
+      "fieldBadgeLabel": "effect (shortLabel fallback, lowercase)"
+    }
+  ],
+  "PROVENANCE_TAGS": [
+    {
+      "id": "simulated",
+      "label": "Simulated",
+      "description": "The effect was evaluated in the browser and has no server report to compare with.",
+      "dhis2Tag": "neutral",
+      "dataTest": "devtools-provenance-simulated",
+      "when": "Notification/event row from the browser trace whose (ruleId, actionType) is not in the last Verify with server report (notifications are never in the report, so they always stay Simulated)"
+    },
+    {
+      "id": "server-verified",
+      "label": "Server-verified",
+      "description": "The browser and the server both produced this effect.",
+      "dhis2Tag": "positive",
+      "dataTest": "devtools-provenance-server-verified",
+      "when": "Browser trace effect also present in the dry-run report (same ruleId + actionType)"
+    },
+    {
+      "id": "server-only",
+      "label": "Server only",
+      "description": "The server reported this effect but the browser did not simulate it.",
+      "dhis2Tag": "negative",
+      "dataTest": "devtools-provenance-server-only",
+      "when": "Dry-run report entry with no matching browser effect"
+    },
+    {
+      "id": "not-executed",
+      "label": "Not executed by this server",
+      "description": "The server version does not execute this action type, so it is shown for reference only.",
+      "dhis2Tag": "not rendered as Tag",
+      "dataTest": "devtools-provenance-not-executed (on the note <p>)",
+      "when": "Action type not executed by server minor (SCHEDULEEVENT/CREATEEVENT < 2.43) or declared-but-not-executed (CREATEEVENT always)"
+    }
+  ]
+}
