@@ -12,6 +12,7 @@
     "clear": "docusaurus clear",
     "typecheck": "tsc --noEmit && tsc --noEmit -p scripts",
     "format": "prettier --write .",
+    "generate:reference": "node --experimental-strip-types scripts/generate-reference.mts",
     "lint": "prettier --check . && pnpm typecheck && markdownlint-cli2",
     "prepare": "husky",
     "screenshots": "node --env-file-if-exists=.env scripts/screenshots/run.mts",
