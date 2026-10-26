@@ -112,7 +112,7 @@ For **SHOWWARNING**, **SHOWERROR**, **WARNINGONCOMPLETE** and **ERRORONCOMPLETE*
 
 ### Does the app save anything?
 
-Not from version 0.1.0-alpha.10. From that version, the only request that sends form data is **Verify with server**, which uses `importMode=VALIDATE`, a dry run, apart from files chosen in file or image fields, which upload at once. Versions 0.1.0-alpha.9 and earlier save real data when you select **Save event** or **Register tracked entity**, so upgrade if you still run one. See [Is it safe on production?](../introduction/is-it-safe-on-production.md).
+No. The only request that sends form data is **Verify with server**, which uses `importMode=VALIDATE`, a dry run, apart from files chosen in file or image fields, which upload at once. See [Is it safe on production?](../introduction/is-it-safe-on-production.md).
 
 ### Why is a rule firing but labelled "Out of scope"?
 

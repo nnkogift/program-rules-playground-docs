@@ -1,0 +1,60 @@
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 1.25rem 5rem;
+}
+
+.hero {
+  max-width: 44rem;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.lede {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: 1.75rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pointTitle {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 800px) {
+  .main {
+    padding-top: 2.5rem;
+  }
+
+  .points {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
