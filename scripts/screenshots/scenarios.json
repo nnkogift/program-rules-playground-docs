@@ -1,0 +1,360 @@
+{
+  "_notes": [
+    "Labels are form labels as rendered: data elements use displayFormName (= formName), attributes use formName, falling back to displayName.",
+    "Pick org unit via context bar: Organisation unit > Select > tree > Ngelehun CHC (Sierra Leone > Bo > Badjia > Ngelehun CHC) > \"Select Ngelehun CHC\". Sierra Leone is also assigned and selectable.",
+    "No SCHEDULEEVENT or CREATEEVENT rule exists in either PRT program, so the Events section / version-gate rows cannot be screenshotted on this instance.",
+    "Expected effects are derived from code + metadata, not observed in a running browser.",
+    "pre_rename=true labels will change (\"Preview server effects\", \"Preview on-complete effects\", \"Show hidden fields\")."
+  ],
+  "orgUnits": {
+    "xo87zwzLEqc": {
+      "id": "DiszpKrYNg8",
+      "name": "Ngelehun CHC",
+      "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+    },
+    "XQpDo4JXQra": {
+      "id": "DiszpKrYNg8",
+      "name": "Ngelehun CHC",
+      "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+    }
+  },
+  "scenarios": [
+    {
+      "id": "event-hide-field-and-section",
+      "programId": "xo87zwzLEqc",
+      "route": "#/programs/xo87zwzLEqc",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Event form (single stage kMag6BUwNgH)",
+      "section": "Main Section",
+      "steps": [
+        {
+          "fieldId": "CRPvieGoVZb",
+          "label": "Toggle hide field",
+          "value": "Yes",
+          "widget": "radio Yes/No"
+        },
+        {
+          "fieldId": "eUjDjDsjC78",
+          "label": "Toggle hide section",
+          "value": "Yes",
+          "widget": "radio Yes/No"
+        }
+      ],
+      "expectedEffect": [
+        "Field \"Hide target field\" (sKYuUOftlgO) shows badge \"Hidden\" and a dashed placeholder \"Hidden by PRT-E01 HIDEFIELD when toggle is on\" (toggle in default \"Hidden fields shown\" state, pre-rename)",
+        "Section card \"Section to Hide\" (UPoo9MczdHb) body replaced by \"Section hidden by PRT-E02 HIDESECTION when toggle is on\"",
+        "Clicking toggle switches to \"Hidden fields collapsed\" and both disappear",
+        "Rules panel: PRT-E01 and PRT-E02 status \"Firing\", sorted to top; header \"16 in scope · 2 firing\" (no In scope/All control for event programs)"
+      ],
+      "rules": ["qhJZXKFrNoO", "xI3Oytk6C7Q"]
+    },
+    {
+      "id": "event-assign-and-indicator",
+      "programId": "xo87zwzLEqc",
+      "route": "#/programs/xo87zwzLEqc",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Event form",
+      "section": "Main Section",
+      "steps": [
+        {
+          "fieldId": "whUEYdoURdQ",
+          "label": "Number input",
+          "value": "21",
+          "widget": "input"
+        }
+      ],
+      "expectedEffect": [
+        "\"Assigned value (number x 2)\" (rhmbkRxkgFT) becomes 42, disabled, badge \"Assigned\"",
+        "Indicators card: item \"Calculated double\" with value 42, footer \"DISPLAYKEYVALUEPAIR · PRT-E09 DISPLAYKEYVALUEPAIR from calculated value\"",
+        "Rules firing: PRT-E07, PRT-E08, PRT-E09 (Graph tab shows Number input -> rules -> targets)"
+      ],
+      "rules": ["crykMNZfXZE", "eqqp9o0E071", "Qrsh5kf5CxJ"],
+      "caveat": "E09 depends on E08 assigning calculated variable prt_calc_double (priority 1 before 2); code-derived, not executed"
+    },
+    {
+      "id": "event-warning-error-feedback-mandatory",
+      "programId": "xo87zwzLEqc",
+      "route": "#/programs/xo87zwzLEqc",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Event form",
+      "section": "Main Section",
+      "steps": [
+        {
+          "fieldId": "whUEYdoURdQ",
+          "label": "Number input",
+          "value": "150",
+          "widget": "input"
+        },
+        {
+          "fieldId": "Np1H391NjPi",
+          "label": "Trigger text",
+          "value": "mandatory",
+          "widget": "input"
+        }
+      ],
+      "expectedEffect": [
+        "Number input: last effect on this field decides the badge. With 150: SHOWWARNING (PRT-E03) badge \"Warning\", yellow validation text \"Number exceeds 100:\" (only the action content is shown; the data part #{prt_number} is not appended, see FACTS N)",
+        "With -5 instead: badge \"Error\", text \"Number cannot be negative\" (PRT-E04)",
+        "Trigger text = mandatory: \"Mandatory target\" (ikV37IrPaOv) label gets \"*\" and badge \"Required by rule\" (PRT-E10)",
+        "Feedback card: item content \"Trigger text is:\" value \"mandatory\", footer \"DISPLAYTEXT · PRT-E11 DISPLAYTEXT in feedback widget\""
+      ],
+      "rules": ["M876DDMuJib", "Ou4TBsxJ74L", "iy7ZDF92RfF", "xT7wWX8kAFy"]
+    },
+    {
+      "id": "event-completion-pass",
+      "programId": "xo87zwzLEqc",
+      "route": "#/programs/xo87zwzLEqc",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Event form",
+      "section": "Main Section",
+      "steps": [
+        {
+          "fieldId": "whUEYdoURdQ",
+          "label": "Number input",
+          "value": "99",
+          "widget": "input"
+        },
+        {
+          "action": "click",
+          "label": "Trigger on-complete rules",
+          "pre_rename": true
+        }
+      ],
+      "expectedEffect": [
+        "Before completing: Number input badge \"On complete: error\" (dashed border) because ERRORONCOMPLETE is the last effect on the field",
+        "After click: banner (error) \"Cannot complete this event yet\" listing \"Error: Number input – 99 blocks completion\"; only button \"Back to editing\" (no \"Complete anyway\")",
+        "Under the field: dashed note \"On complete: 99 blocks completion\"",
+        "Variant: value 50 gives warning banner \"Review before completing\" with \"Warning: Number input – Completing with the sentinel warning value 50\" and buttons \"Back to editing\" + \"Complete anyway\" (Complete anyway opens Server effects modal)"
+      ],
+      "rules": ["fu1recuVsZ3", "LMTi0BehJhG"]
+    },
+    {
+      "id": "event-server-effects-notifications",
+      "programId": "xo87zwzLEqc",
+      "route": "#/programs/xo87zwzLEqc",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Event form",
+      "section": "Main Section",
+      "steps": [
+        {
+          "fieldId": "whUEYdoURdQ",
+          "label": "Number input",
+          "value": "911",
+          "widget": "input"
+        },
+        {
+          "action": "click",
+          "label": "Trigger server rules",
+          "pre_rename": true
+        }
+      ],
+      "expectedEffect": [
+        "Modal \"Server effects\" (pre-rename) section \"Notifications (1)\": row with SENDMESSAGE badge, rule link \"PRT-E15 SENDMESSAGE when number == 911\", tag \"Simulated\"",
+        "Details: Template \"PRT Event send message\", Recipient \"USERS_AT_ORGANISATION_UNIT\", Subject \"PRT SENDMESSAGE fired\", Message \"SENDMESSAGE was triggered in\" + chip V{program_name} + \"at\" + chip V{org_unit_name} + \".\" (V{} values are not in form values, so they stay chips)",
+        "Footer caveat \"Use Verify with server on the form to compare against the server.\" and Close",
+        "Variant 912: SCHEDULEMESSAGE row (PRT-E16) with \"Scheduled for\" = event date + 7 days (yyyy-MM-dd), template \"PRT Event schedule message\""
+      ],
+      "rules": ["TzqohkBqxDW", "AW85XSl6OIJ"],
+      "caveat": "Assumes the browser rule engine emits SENDMESSAGE/SCHEDULEMESSAGE effects (summary is built from trace); not executed here"
+    },
+    {
+      "id": "event-verify-with-server",
+      "programId": "xo87zwzLEqc",
+      "route": "#/programs/xo87zwzLEqc",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Event form",
+      "steps": [
+        {
+          "fieldId": "whUEYdoURdQ",
+          "label": "Number input",
+          "value": "-5",
+          "widget": "input"
+        },
+        {
+          "action": "click",
+          "label": "Verify with server"
+        }
+      ],
+      "expectedEffect": [
+        "POST /api/tracker?importMode=VALIDATE&async=false with the event payload",
+        "Expected: \"Server check found issues\" and the server SHOWERROR message placed on Number input (or listed if not placeable). Without org unit: context bar shows \"Required to verify or save\" and notice \"Could not verify with server\" / \"Select an organisation unit before saving or verifying\"",
+        "Observed on dhis.rufaa.co.tz (2.43.2): the dry run returns no rule results for the PRT event program, so the app shows \"Server check passed\". The verify-with-server image uses a value that breaks no rule (event-assign-and-indicator) so it is not contradictory."
+      ],
+      "rules": ["Ou4TBsxJ74L"],
+      "caveat": "Server response not observed (POST not allowed in this research pass)"
+    },
+    {
+      "id": "tracker-cross-form",
+      "programId": "XQpDo4JXQra",
+      "route": "#/programs/XQpDo4JXQra",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Rail \"Registration\" then rail \"PRT Baseline\"",
+      "section": "PRT Identification",
+      "steps": [
+        {
+          "fieldId": "EBCNXQ9jIU9",
+          "label": "First name",
+          "value": "Amina",
+          "widget": "input"
+        },
+        {
+          "fieldId": "CMGH8KxOLqD",
+          "label": "Age (years)",
+          "value": "30",
+          "widget": "input"
+        },
+        {
+          "action": "click rail row",
+          "label": "PRT Baseline"
+        },
+        {
+          "fieldId": "FwZU55PBRcA",
+          "label": "Age at visit",
+          "value": "25",
+          "widget": "input"
+        }
+      ],
+      "expectedEffect": [
+        "Registration: \"Risk score (assign target)\" (section PRT Rule targets) = 3, disabled, badge \"Assigned\" (PRT-T04)",
+        "\"Occupation (mandatory target)\" gets \"*\" and badge \"Required by rule\" (PRT-T05, age >= 18)",
+        "Feedback card: \"Registering:\" value \"Amina\" (PRT-T06)",
+        "Baseline stage form: \"Age at visit\" warning badge, text \"Age at visit is lower than the registered age:\" (PRT-T10 reads A attribute from the Registration form via cross-form inputs)",
+        "Rules panel on Baseline form: In scope/All control shown; PRT-T10 has no programStage so it is \"Out of scope\" there (shows caption \"Applies to enrollment\") even though it fires"
+      ],
+      "rules": ["BdX2G6WhvNl", "q7lDdno0oln", "hl9WYjjevBf", "QyuZPiSW5kT"]
+    },
+    {
+      "id": "tracker-repeatable-stage",
+      "programId": "XQpDo4JXQra",
+      "route": "#/programs/XQpDo4JXQra",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Rail \"PRT Follow-up\" (repeatable)",
+      "steps": [
+        {
+          "action": "click",
+          "label": "Add event (+ on PRT Follow-up row)"
+        },
+        {
+          "fieldId": "vbqBp3bGvjY",
+          "label": "Weight (kg)",
+          "value": "70",
+          "widget": "input"
+        },
+        {
+          "action": "click",
+          "label": "Add event (+ on PRT Follow-up row)"
+        },
+        {
+          "fieldId": "vbqBp3bGvjY",
+          "label": "Weight (kg)",
+          "value": "999",
+          "widget": "input"
+        }
+      ],
+      "expectedEffect": [
+        "Rail: \"PRT Follow-up\" meta \"No events yet\" -> \"1 event\" -> \"2 events\"; indented rows \"Event 1\", \"Event 2\"; Add event selects the new event",
+        "Event 1 keeps 70 after switching (forms stay mounted)",
+        "Indicators card in Event 2: \"Current weight (kg)\" 999 (PRT-T11)",
+        "Event 2: Weight badge \"On complete: error\"; Trigger on-complete rules -> \"Cannot complete this event yet\", \"Error: Weight (kg) – 999 is a test sentinel and blocks completion\" (PRT-T14). 998 gives the warning variant (PRT-T15)"
+      ],
+      "rules": ["p9CMGdjUtuF", "dbrWZAU7vzV", "y6PSEZndEN1"],
+      "caveat": "PRT-T09 (weight below previous event) and PRT-T08 (previous-event hide) depend on event-date ordering; all stage drafts get today as date and no date field is shown, so they are not reliable for screenshots"
+    },
+    {
+      "id": "tracker-consent-hide-and-schedulemessage",
+      "programId": "XQpDo4JXQra",
+      "route": "#/programs/XQpDo4JXQra",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Rail \"Registration\"",
+      "section": "PRT Consent",
+      "steps": [
+        {
+          "fieldId": "tfwDGlUN1oP",
+          "label": "Consent given",
+          "value": "No",
+          "widget": "radio Yes/No"
+        },
+        {
+          "fieldId": "tfwDGlUN1oP",
+          "label": "Consent given",
+          "value": "Yes",
+          "widget": "radio Yes/No"
+        },
+        {
+          "action": "click",
+          "label": "Trigger server rules",
+          "pre_rename": true
+        }
+      ],
+      "expectedEffect": [
+        "No: \"Notes (hide target)\" (section PRT Conditional details) shows badge \"Hidden\" + placeholder \"Hidden by PRT-T01 HIDEFIELD (TEA) when consent is false\"; PRT-T07 HIDEPROGRAMSTAGE fires (Rules/Trace) but the rail does NOT hide \"PRT Hideable stage\"",
+        "Yes: Server effects modal \"Notifications (1)\": SCHEDULEMESSAGE row PRT-T13, tag \"Simulated\", Template \"PRT Tracker schedule message\", Scheduled for = enrollment date + 30 days, Message contains chip A{PrtTeaName1}"
+      ],
+      "rules": ["hehJ6o4szfg", "NzmTzRiJNHl", "XDPOuziGCr8"]
+    },
+    {
+      "id": "tracker-validate-metadata",
+      "programId": "XQpDo4JXQra",
+      "route": "#/programs/XQpDo4JXQra",
+      "orgUnit": {
+        "id": "DiszpKrYNg8",
+        "name": "Ngelehun CHC",
+        "path": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8"
+      },
+      "form": "Rail \"Enrollment form\"",
+      "steps": [
+        {
+          "fieldId": "CMGH8KxOLqD",
+          "label": "Age (years)",
+          "value": "-3",
+          "widget": "input"
+        },
+        {
+          "action": "click",
+          "label": "Validate form"
+        }
+      ],
+      "expectedEffect": [
+        "\"First name\" (EBCNXQ9jIU9) is mandatory in the program metadata and left empty",
+        "\"Age (years)\" is INTEGER_ZERO_OR_POSITIVE, so -3 shows \"Must be zero or a positive whole number\"",
+        "Validate form shows \"Form has issues\" listing First name and Age (years). Rule errors and rule-mandatory fields are not part of Validate form (observed on app 9fd52cd)"
+      ]
+    }
+  ]
+}

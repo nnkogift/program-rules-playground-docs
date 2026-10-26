@@ -1,0 +1,103 @@
+name: Screenshots
+
+# Re-captures every image in scripts/screenshots/manifest.mts against a DHIS2
+# instance and opens a pull request when any image changed.
+
+on:
+  schedule:
+    # Mondays 04:17 UTC.
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      app_ref:
+        description: Branch or tag of nnkogift/program-rules-playground to capture
+        required: false
+        default: alpha
+  repository_dispatch:
+    # Sent by the app repository. client_payload.ref names the released tag.
+    types: [app-released, app-compat-changed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+# Runs queue instead of cancelling each other, so the weekly or a manual run
+# never cancels the capture for an app release.
+concurrency:
+  group: screenshots
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      APP_REF: ${{ github.event.client_payload.ref || inputs.app_ref || 'alpha' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check out the app
+        uses: actions/checkout@v4
+        with:
+          repository: nnkogift/program-rules-playground
+          ref: ${{ env.APP_REF }}
+          path: .app
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            .app/pnpm-lock.yaml
+
+      - name: Install docs dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install app dependencies
+        working-directory: .app
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      # The script starts the app's dev server (d2-app-scripts start) with its
+      # proxy pointed at DHIS2_BASE_URL, signs in through the app shell and
+      # captures each image. A production build would need CORS and
+      # cross-site cookies on the instance, which a demo server does not allow.
+      - name: Capture screenshots
+        run: pnpm screenshots:ci
+        env:
+          APP_DIR: .app
+          DHIS2_BASE_URL: ${{ vars.DHIS2_BASE_URL || 'https://dhis.rufaa.co.tz' }}
+          DHIS2_USERNAME: ${{ secrets.DHIS2_USERNAME }}
+          DHIS2_PASSWORD: ${{ secrets.DHIS2_PASSWORD }}
+
+      - name: Upload failure screenshots and logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-debug
+          path: scripts/screenshots/.output
+          include-hidden-files: true
+          retention-days: 7
+
+      - name: Open a pull request when images changed
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/refresh-screenshots
+          delete-branch: true
+          add-paths: |
+            docs/**/img/*.png
+            static/app-hub/*.png
+          commit-message: 'chore: refresh screenshots for app ${{ env.APP_REF }}'
+          title: 'chore: refresh screenshots for app ${{ env.APP_REF }}'
+          body: |
+            Screenshots re-captured by the [Screenshots workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+
+            - App ref: `${{ env.APP_REF }}`
+            - Trigger: `${{ github.event_name }}${{ github.event.action && format(' ({0})', github.event.action) || '' }}`
+
+            Check each changed image before merging. Image names and paths come from `scripts/screenshots/manifest.mts`.
+          labels: screenshots

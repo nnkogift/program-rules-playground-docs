@@ -34,5 +34,5 @@ This guide is for people who write or review pages in `docs/`. It is not publish
 - Every page has front matter with `title`, `description` and `sidebar_position`.
 - Start each page from a template in [`templates/`](./templates).
 - Link to other pages with relative file paths (`../reference/glossary.md`) so broken links fail the build.
-- Put screenshots next to the page that uses them. Every image has alt text.
+- Put screenshots next to the page that uses them, in an `img/` folder. Every image has alt text. Screenshots are captured by script, see [`SCREENSHOTS.md`](./SCREENSHOTS.md).
 - Use Mermaid code blocks for flows. Keep each diagram small.

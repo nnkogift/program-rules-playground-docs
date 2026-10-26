@@ -10,10 +10,12 @@
     "build:mirror": "DOCS_MIRROR=true DOCS_URL=https://nnkogift.github.io DOCS_BASE_URL=/program-rules-playground-docs/ docusaurus build",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p scripts",
     "format": "prettier --write .",
-    "lint": "prettier --check . && tsc --noEmit && markdownlint-cli2",
-    "prepare": "husky"
+    "lint": "prettier --check . && pnpm typecheck && markdownlint-cli2",
+    "prepare": "husky",
+    "screenshots": "node --env-file-if-exists=.env scripts/screenshots/run.mts",
+    "screenshots:ci": "node scripts/screenshots/run.mts"
   },
   "lint-staged": {
     "*.{ts,tsx,js,json,css,yml,yaml}": "prettier --write",
@@ -23,7 +25,7 @@
     ]
   },
   "engines": {
-    "node": ">=20.0"
+    "node": ">=24"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
@@ -42,10 +44,12 @@
     "@docusaurus/plugin-content-docs": "3.10.2",
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
+    "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "markdownlint-cli2": "^0.24.0",
+    "playwright": "1.63.0",
     "prettier": "^3.9.10",
     "typescript": "^5.9.3"
   }

@@ -51,6 +51,17 @@ docker build -t prp-docs .
 docker run --rm -p 8080:80 prp-docs
 ```
 
+## Screenshots
+
+Screenshots are captured by a Playwright script against a DHIS2 instance, so they can be refreshed after every app release. `scripts/screenshots/manifest.mts` lists every image with its stable path (`docs/<folder>/img/<name>.png`, and `static/app-hub/` for the App Hub listing).
+
+```bash
+# DHIS2_USERNAME and DHIS2_PASSWORD go in .env (git ignores it)
+APP_DIR=../program-rules-playground pnpm screenshots
+```
+
+By default the script uses the demo instance `https://dhis.rufaa.co.tz` (DHIS2 2.43). Set `DHIS2_USERNAME` and `DHIS2_PASSWORD` in `.env`, and ask the maintainer for access to the demo instance. [`screenshots.yml`](.github/workflows/screenshots.yml) runs it weekly, on manual dispatch and on `app-released` / `app-compat-changed` dispatches from the app repository, and opens a pull request when images change. It reads the `DHIS2_USERNAME` and `DHIS2_PASSWORD` secrets. See [`docs-contributing/SCREENSHOTS.md`](docs-contributing/SCREENSHOTS.md) for the environment variables and how to add a scenario.
+
 ## Contributing
 
 Read [`docs-contributing/STYLE_GUIDE.md`](docs-contributing/STYLE_GUIDE.md) and start from a template in [`docs-contributing/templates/`](docs-contributing/templates). Agent guidance is in [`AGENTS.md`](AGENTS.md).
